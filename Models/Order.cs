@@ -19,8 +19,7 @@ namespace OrderService.Models
 
         [Required]
         public virtual Stack Stack {get; set;}
-
-        // Foreign key   
+        
         [Display(Name = "Business")]
         [Required]
         public virtual int BusinessID {get; set;}

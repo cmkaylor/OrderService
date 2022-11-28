@@ -29,13 +29,13 @@ namespace OrderService.Controllers
 
         [HttpGet]
         [Route("{businessID}")]
-        public ActionResult<IEnumerable<Order>> GetOrders(int businessID)
+        public ActionResult<IEnumerable<OrderDto>> GetOrders(int businessID)
         {
             var orders = _repo.GetOrders(businessID).ToList();
             
             if(orders.Count > 0)
             {
-                return orders;
+                return _mapper.Map<IEnumerable<OrderDto>>(orders).ToList();
             }
 
             OrderCreateMessage message = new OrderCreateMessage()
