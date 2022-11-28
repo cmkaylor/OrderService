@@ -31,10 +31,24 @@ namespace OrderService.Controllers
         [Route("{businessID}")]
         public ActionResult<IEnumerable<Order>> GetOrders(int businessID)
         {
-            return _repo.GetOrders(businessID).ToList();
+            var orders = _repo.GetOrders(businessID).ToList();
+            
+            if(orders.Count > 0)
+            {
+                return orders;
+            }
+
+            OrderCreateMessage message = new OrderCreateMessage()
+            {
+                Message = "No orders under this businessID",
+                OrderNumber = businessID
+            };
+
+            return NotFound(message);
         }
 
         [HttpPost]
+        [Route("stack")]
         public ActionResult<OrderCreateMessage> CreateOrder(OrderCreateDto order)
         {
             Stack stackTransferable = new Stack()
@@ -50,7 +64,7 @@ namespace OrderService.Controllers
                 EstimatedFulfillment = DateTime.Now,
                 IsFulfilled = false,
                 Stack = stackTransferable,
-                //Business = order.BusinessID.
+                BusinessID = 1
             };
 
             _repo.CreateOrder(orderTransferable);

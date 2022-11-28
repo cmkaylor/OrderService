@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderService.Models
 {
@@ -11,8 +12,6 @@ namespace OrderService.Models
 
         [Required]
         public DateTime ReceivedDate {get; set;}
-
-        [Required]
         public DateTime EstimatedFulfillment {get; set;}
 
         [Required]
@@ -21,7 +20,12 @@ namespace OrderService.Models
         [Required]
         public virtual Stack Stack {get; set;}
 
+        // Foreign key   
+        [Display(Name = "Business")]
         [Required]
+        public virtual int BusinessID {get; set;}
+
+        [ForeignKey("BusinessID")] 
         public virtual Business Business {get; set;}
     }
 }

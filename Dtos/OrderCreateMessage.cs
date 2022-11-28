@@ -2,8 +2,8 @@ namespace OrderService.Dtos
 {
     public class OrderCreateMessage
     {
-        public string Message;
+        public string Message {get; set;}
 
-        public int OrderNumber;
+        public int OrderNumber {get; set;}
     }
 }

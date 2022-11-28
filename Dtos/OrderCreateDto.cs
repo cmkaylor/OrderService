@@ -6,9 +6,6 @@ namespace OrderService.Dtos
     public class OrderCreateDto
     {
         [Required]
-        public int BusinessID {get; set;}
-
-        [Required]
         public int Quantity {get; set;}
 
         [Required]
