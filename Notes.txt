@@ -6,3 +6,5 @@
   "size": null
   }
 }
+
+mssql-clusterip-srv
